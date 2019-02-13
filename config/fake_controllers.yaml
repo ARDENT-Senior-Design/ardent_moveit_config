@@ -1,0 +1,21 @@
+controller_list:
+  - name: fake_leg_1_controller
+    joints:
+      - j_coxa_1
+      - j_femur_1
+      - j_tibia_1
+  - name: fake_leg_2_controller
+    joints:
+      - j_coxa_2
+      - j_femur_2
+      - j_tibia_2
+  - name: fake_leg_3_controller
+    joints:
+      - j_coxa_3
+      - j_femur_3
+      - j_tibia_3
+  - name: fake_leg_4_controller
+    joints:
+      - j_coxa_4
+      - j_femur_4
+      - j_tibia_4
