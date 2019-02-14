@@ -6,6 +6,6 @@
 
   <!-- Load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" args="leg_4_effort_controller leg_3_effort_controller leg_2_effort_controller leg_1_effort_controller "/>
+    output="screen" args="leg_3_effort_controller leg_1_effort_controller leg_2_effort_controller leg_4_effort_controller "/>
 
 </launch>
