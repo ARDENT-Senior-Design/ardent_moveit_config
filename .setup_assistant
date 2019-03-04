@@ -1,11 +1,11 @@
 moveit_setup_assistant_config:
   URDF:
     package: ardent_description
-    relative_path: config/robot/urdf/ardent.urdf
+    relative_path: ardent.urdf.xacro
     xacro_args: ""
   SRDF:
     relative_path: config/ardent.srdf
   CONFIG:
     author_name: Nathan Boyd
     author_email: nathan.boyd.481@my.csun.edu
-    generated_timestamp: 1550119787
+    generated_timestamp: 1550477782

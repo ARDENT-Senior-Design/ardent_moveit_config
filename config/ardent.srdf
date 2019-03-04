@@ -10,72 +10,44 @@
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="leg_1">
-        <link name="body" />
-        <link name="coxa_1" />
-        <link name="c2_1" />
-        <link name="femur_1" />
-        <link name="tibia_1" />
-        <joint name="base_virtual" />
+        <joint name="virtual_joint" />
         <joint name="j_ardent_attachment" />
         <joint name="j_coxa_1" />
         <joint name="j_c2_1" />
         <joint name="j_femur_1" />
         <joint name="j_tibia_1" />
-        <chain base_link="body" tip_link="tibia_1" />
+        <joint name="j_contact_sensor_1" />
+        <chain base_link="body" tip_link="contact_sensor_1" />
     </group>
     <group name="leg_2">
-        <link name="body" />
-        <link name="coxa_2" />
-        <link name="c2_2" />
-        <link name="femur_2" />
-        <link name="tibia_2" />
-        <joint name="base_virtual" />
+        <joint name="virtual_joint" />
         <joint name="j_ardent_attachment" />
         <joint name="j_coxa_2" />
         <joint name="j_c2_2" />
         <joint name="j_femur_2" />
         <joint name="j_tibia_2" />
-        <chain base_link="body" tip_link="tibia_2" />
+        <joint name="j_contact_sensor_2" />
+        <chain base_link="body" tip_link="contact_sensor_2" />
     </group>
     <group name="leg_3">
-        <link name="body" />
-        <link name="coxa_3" />
-        <link name="c2_3" />
-        <link name="femur_3" />
-        <link name="tibia_3" />
-        <joint name="base_virtual" />
+        <joint name="virtual_joint" />
         <joint name="j_ardent_attachment" />
         <joint name="j_coxa_3" />
         <joint name="j_c2_3" />
         <joint name="j_femur_3" />
         <joint name="j_tibia_3" />
-        <chain base_link="body" tip_link="tibia_3" />
+        <joint name="j_contact_sensor_3" />
+        <chain base_link="body" tip_link="contact_sensor_3" />
     </group>
     <group name="leg_4">
-        <link name="body" />
-        <link name="coxa_4" />
-        <link name="c2_4" />
-        <link name="femur_4" />
-        <link name="tibia_4" />
-        <joint name="base_virtual" />
+        <joint name="virtual_joint" />
         <joint name="j_ardent_attachment" />
         <joint name="j_coxa_4" />
         <joint name="j_c2_4" />
         <joint name="j_femur_4" />
         <joint name="j_tibia_4" />
-        <chain base_link="body" tip_link="tibia_4" />
-    </group>
-    <group name="foot_1">
-        <joint name="j_contact_sensor_1" />
-    </group>
-    <group name="foot_2">
-        <joint name="j_contact_sensor_2" />
-    </group>
-    <group name="foot_3">
-        <joint name="j_contact_sensor_3" />
-    </group>
-    <group name="foot_4">
         <joint name="j_contact_sensor_4" />
+        <chain base_link="body" tip_link="contact_sensor_4" />
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="T-Pose1" group="leg_1">
@@ -98,14 +70,10 @@
         <joint name="j_femur_4" value="0" />
         <joint name="j_tibia_4" value="0" />
     </group_state>
-    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="foot_1" parent_link="tibia_1" group="foot_1" />
-    <end_effector name="foot_2" parent_link="tibia_2" group="foot_2" />
-    <end_effector name="foot_3" parent_link="tibia_3" group="foot_3" />
-    <end_effector name="foot_4" parent_link="tibia_4" group="foot_4" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="base_virtual" type="fixed" parent_frame="world" child_link="base_link" />
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="body" link2="c2_1" reason="User" />
     <disable_collisions link1="body" link2="c2_2" reason="User" />
     <disable_collisions link1="body" link2="c2_3" reason="User" />
     <disable_collisions link1="body" link2="c2_4" reason="User" />
@@ -117,8 +85,6 @@
     <disable_collisions link1="c2_1" link2="c2_3" reason="Never" />
     <disable_collisions link1="c2_1" link2="c2_4" reason="Never" />
     <disable_collisions link1="c2_1" link2="contact_sensor_1" reason="Never" />
-    <disable_collisions link1="c2_1" link2="contact_sensor_2" reason="Never" />
-    <disable_collisions link1="c2_1" link2="contact_sensor_4" reason="Never" />
     <disable_collisions link1="c2_1" link2="coxa_1" reason="Adjacent" />
     <disable_collisions link1="c2_1" link2="coxa_2" reason="Never" />
     <disable_collisions link1="c2_1" link2="coxa_3" reason="Never" />
@@ -153,6 +119,7 @@
     <disable_collisions link1="c2_3" link2="femur_3" reason="Adjacent" />
     <disable_collisions link1="c2_3" link2="femur_4" reason="Never" />
     <disable_collisions link1="c2_3" link2="tibia_2" reason="Never" />
+    <disable_collisions link1="c2_4" link2="contact_sensor_1" reason="Never" />
     <disable_collisions link1="c2_4" link2="contact_sensor_4" reason="Never" />
     <disable_collisions link1="c2_4" link2="coxa_1" reason="Never" />
     <disable_collisions link1="c2_4" link2="coxa_2" reason="Never" />
@@ -163,16 +130,16 @@
     <disable_collisions link1="c2_4" link2="femur_3" reason="Never" />
     <disable_collisions link1="c2_4" link2="femur_4" reason="Adjacent" />
     <disable_collisions link1="c2_4" link2="tibia_1" reason="Never" />
-    <disable_collisions link1="contact_sensor_1" link2="contact_sensor_2" reason="Never" />
     <disable_collisions link1="contact_sensor_1" link2="coxa_1" reason="Never" />
+    <disable_collisions link1="contact_sensor_1" link2="coxa_4" reason="Never" />
     <disable_collisions link1="contact_sensor_1" link2="femur_1" reason="Never" />
     <disable_collisions link1="contact_sensor_1" link2="tibia_1" reason="Adjacent" />
     <disable_collisions link1="contact_sensor_2" link2="contact_sensor_3" reason="Never" />
     <disable_collisions link1="contact_sensor_2" link2="coxa_2" reason="Never" />
+    <disable_collisions link1="contact_sensor_2" link2="coxa_3" reason="Never" />
     <disable_collisions link1="contact_sensor_2" link2="femur_2" reason="Never" />
-    <disable_collisions link1="contact_sensor_2" link2="femur_3" reason="Never" />
     <disable_collisions link1="contact_sensor_2" link2="tibia_2" reason="Adjacent" />
-    <disable_collisions link1="contact_sensor_3" link2="contact_sensor_4" reason="Never" />
+    <disable_collisions link1="contact_sensor_3" link2="coxa_2" reason="Never" />
     <disable_collisions link1="contact_sensor_3" link2="coxa_3" reason="Never" />
     <disable_collisions link1="contact_sensor_3" link2="femur_3" reason="Never" />
     <disable_collisions link1="contact_sensor_3" link2="tibia_3" reason="Adjacent" />
@@ -196,11 +163,13 @@
     <disable_collisions link1="coxa_3" link2="coxa_4" reason="Never" />
     <disable_collisions link1="coxa_3" link2="femur_1" reason="Never" />
     <disable_collisions link1="coxa_3" link2="femur_2" reason="Never" />
+    <disable_collisions link1="coxa_3" link2="femur_3" reason="Always" />
     <disable_collisions link1="coxa_3" link2="femur_4" reason="Never" />
     <disable_collisions link1="coxa_3" link2="tibia_2" reason="Never" />
     <disable_collisions link1="coxa_4" link2="femur_1" reason="Never" />
     <disable_collisions link1="coxa_4" link2="femur_2" reason="Never" />
     <disable_collisions link1="coxa_4" link2="femur_3" reason="Never" />
+    <disable_collisions link1="coxa_4" link2="femur_4" reason="Always" />
     <disable_collisions link1="coxa_4" link2="tibia_1" reason="Never" />
     <disable_collisions link1="femur_1" link2="femur_2" reason="Never" />
     <disable_collisions link1="femur_1" link2="femur_4" reason="Never" />
